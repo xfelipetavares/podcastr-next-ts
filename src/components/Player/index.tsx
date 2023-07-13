@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useContext, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import styles from './styles.module.scss'
-import PlayerContext from '@/contexts/PlayerContext'
 import Image from 'next/image'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
+import { usePlayer } from '@/contexts/PlayerContext'
 
 const Player = () => {
   const {
@@ -13,7 +13,11 @@ const Player = () => {
     togglePlay,
     isPlaying,
     setPlayingState,
-  } = useContext(PlayerContext)
+    playNext,
+    playPrevious,
+    hasNext,
+    hasPrevious
+  } = usePlayer()
   const episode = episodeList[currentEpisodeIndex]
   const audioRef = useRef<HTMLAudioElement>(null)
 
@@ -75,7 +79,7 @@ const Player = () => {
           <button type="button" disabled={!episode}>
             <img src="/shuffle.svg" alt="embaralhar" />
           </button>
-          <button type="button" disabled={!episode}>
+          <button type="button" onClick={playNext} name='previous' disabled={!hasNext || !episode}>
             <img src="/play-previous.svg" alt="Tocar anterior" />
           </button>
           <button
@@ -90,7 +94,7 @@ const Player = () => {
               <img src="/play.svg" alt="Pausar" />
             )}
           </button>
-          <button type="button" disabled={!episode}>
+          <button type="button" onClick={playPrevious} name='next' disabled={!hasPrevious  || !episode}>
             <img src="/play-next.svg" alt="Tocar próxima" />
           </button>
           <button type="button" disabled={!episode}>

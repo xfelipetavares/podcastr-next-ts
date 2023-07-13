@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import api from '@/services/api'
 import { format, parseISO } from 'date-fns'
@@ -9,8 +8,10 @@ import styles from './episode.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
 import { EpisodeFormatter, EpisodeProps } from '@/@types/types'
+import { usePlayer } from '@/contexts/PlayerContext'
 
 const Episode = ({ episode }: EpisodeProps) => {
+  const { play } = usePlayer()
   return (
     <div className={styles.episode}>
       <div className={styles.thumbnailContainer}>
@@ -25,7 +26,7 @@ const Episode = ({ episode }: EpisodeProps) => {
           src={episode.thumbnail}
           alt="capa do episodio"
         />
-        <button className={styles.lastChild} type="button">
+        <button className={styles.lastChild} type="button" onClick={() => play(episode)}>
           <img src="/play.svg" alt="tocar episódio" />
         </button>
       </div>
