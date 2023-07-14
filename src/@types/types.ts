@@ -4,7 +4,7 @@ export interface EpisodeProps {
   thumbnail: string
   members: string
   publishedAt: string
-  duration: string
+  duration: number
   description?: string
   durationAsString: string
   url: string

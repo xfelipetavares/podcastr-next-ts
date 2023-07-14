@@ -4,7 +4,7 @@ export interface EpisodePlayer {
   title: string
   thumbnail: string
   members: string
-  duration: string
+  duration: number
   url: string
 }
 
@@ -13,7 +13,11 @@ export interface PlayerContextData {
   currentEpisodeIndex: number
   play: (episode: EpisodePlayer) => void
   isPlaying: boolean
+  isShuffling: boolean
+  isLooping: boolean
   togglePlay: () => void
+  toggleShuffle: () => void
+  toggleLoop: () => void
   playNext: () => void
   playPrevious: () => void
   setPlayingState: (state: boolean) => void

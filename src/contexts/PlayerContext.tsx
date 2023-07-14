@@ -13,6 +13,8 @@ export const PlayerContextProvider = ({
   const [episodeList, setEpisodeList] = useState<EpisodePlayer[]>([])
   const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [isLooping, setIsLooping] = useState(false)
+  const [isShuffling, setIsShuffling] = useState(false)
 
   const play = (episode: EpisodePlayer) => {
     setEpisodeList([episode])
@@ -32,20 +34,27 @@ export const PlayerContextProvider = ({
   }
 
   const hasPrevious = currentEpisodeIndex > 0
-  const hasNext = (currentEpisodeIndex + 1) < episodeList.length
+  const hasNext = currentEpisodeIndex + 1 < episodeList.length
 
   const playNext = () => {
-    const nextEpisodeIndex = currentEpisodeIndex + 1
-
-    if(hasNext){
+    if(isShuffling) {
+      const nextRandomEpisodeIndex = Math.floor(Math.random() * episodeList.length)
+      setCurrentEpisodeIndex(nextRandomEpisodeIndex)
+    } else if (hasNext) {
       setCurrentEpisodeIndex(currentEpisodeIndex + 1)
     }
   }
 
   const playPrevious = () => {
-    if(hasPrevious){
-      setCurrentEpisodeIndex(currentEpisodeIndex - 1)
-    }
+    if (hasPrevious) setCurrentEpisodeIndex(currentEpisodeIndex - 1)
+  }
+
+  const toggleLoop = () => {
+    setIsLooping(!isLooping)
+  }
+
+  const toggleShuffle = () => {
+    setIsShuffling(!isShuffling)
   }
 
   const contextParams = {
@@ -60,7 +69,11 @@ export const PlayerContextProvider = ({
     playNext,
     playPrevious,
     hasNext,
-    hasPrevious
+    hasPrevious,
+    isLooping,
+    isShuffling,
+    toggleLoop,
+    toggleShuffle,
   }
 
   return (
@@ -69,7 +82,6 @@ export const PlayerContextProvider = ({
     </PlayerContext.Provider>
   )
 }
-
 
 export const usePlayer = () => {
   return useContext(PlayerContext)
