@@ -9,14 +9,19 @@ import { convertDurationToTimeString } from '@/utils/convertDurationToTimeString
 import styles from './home.module.scss'
 import { HomeProps, EpisodeFormatter } from '@/@types/types'
 import { usePlayer } from '@/contexts/PlayerContext'
+import Head from 'next/head'
 
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
   const { playList } = usePlayer()
 
+  
   const episodeList = [...latestEpisodes, ...allEpisodes]
   return (
     <div className={styles.homepage}>
+      <Head>
+        <title>Home | Podcastr</title>
+      </Head>
       <section className={styles.latestEpisodes}>
         <h2>Últimos Lançamentos</h2>
         <ul>

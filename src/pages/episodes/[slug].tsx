@@ -9,11 +9,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { EpisodeFormatter, EpisodeProps } from '@/@types/types'
 import { usePlayer } from '@/contexts/PlayerContext'
+import Head from 'next/head'
 
 const Episode = ({ episode }: EpisodeProps) => {
   const { play } = usePlayer()
   return (
     <div className={styles.episode}>
+      <Head>
+        <title>{episode.title} | Podcastr</title>
+      </Head>
       <div className={styles.thumbnailContainer}>
         <Link href={'/'}>
           <button className={styles.firstChild} type="button">
@@ -26,7 +30,11 @@ const Episode = ({ episode }: EpisodeProps) => {
           src={episode.thumbnail}
           alt="capa do episodio"
         />
-        <button className={styles.lastChild} type="button" onClick={() => play(episode)}>
+        <button
+          className={styles.lastChild}
+          type="button"
+          onClick={() => play(episode)}
+        >
           <img src="/play.svg" alt="tocar episódio" />
         </button>
       </div>
@@ -57,7 +65,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     },
   })
 
-  const paths = data.map((episode: EpisodeFormatter) => ({params: { slug: episode.id }}) )
+  const paths = data.map((episode: EpisodeFormatter) => ({
+    params: { slug: episode.id },
+  }))
 
   return {
     paths,

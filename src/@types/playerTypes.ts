@@ -24,6 +24,7 @@ export interface PlayerContextData {
   hasNext: boolean
   hasPrevious: boolean
   playList: (list: EpisodePlayer[], index: number) => void
+  clearPlayerState: () => void
 }
 
 export interface PlayerContextProviderProps {
