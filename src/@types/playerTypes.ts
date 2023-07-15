@@ -21,6 +21,7 @@ export interface PlayerContextData {
   playNext: () => void
   playPrevious: () => void
   setPlayingState: (state: boolean) => void
+  setIsShuffling: (state: boolean) => void
   hasNext: boolean
   hasPrevious: boolean
   playList: (list: EpisodePlayer[], index: number) => void

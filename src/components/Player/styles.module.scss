@@ -103,34 +103,34 @@
     border: 0;
     font-size: 0;
     transition: filter 0.2s;
-
+    
     &:hover:not(:disabled) {
-      filter: brightness(0.7);
+      filter: invert(0.35) sepia(1) saturate(3) hue-rotate(100deg);
     }
     
     &:disabled {
       cursor: default;
       opacity: 0.5;
     }
-
+    
     &.isActive {
       filter: invert(0.35) sepia(1) saturate(3) hue-rotate(100deg);
     }
-
-    &.isActive {
+    
+    &.isActive:hover {
       filter: brightness(0.6) invert(0.35) sepia(1) saturate(3) hue-rotate(100deg);
     }
-
+    
     &.playButton {
       width: 4rem;
       height: 4rem;
       border-radius: 1rem;
       background: var(--purple-400);
-
+      
       &:hover:not(:disabled) {
         filter: brightness(0.95);
       }
     }
   }
-
+  
 }

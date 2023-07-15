@@ -1,18 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
-import { GetStaticPaths, GetStaticProps } from 'next'
-import api from '@/services/api'
-import { format, parseISO } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
-import { convertDurationToTimeString } from '@/utils/convertDurationToTimeString'
-import styles from './episode.module.scss'
-import Image from 'next/image'
-import Link from 'next/link'
 import { EpisodeFormatter, EpisodeProps } from '@/@types/types'
 import { usePlayer } from '@/contexts/PlayerContext'
+import api from '@/services/api'
+import { convertDurationToTimeString } from '@/utils/convertDurationToTimeString'
+import { format, parseISO } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
+import Link from 'next/link'
+import styles from './episode.module.scss'
 
 const Episode = ({ episode }: EpisodeProps) => {
-  const { play } = usePlayer()
+  const { play, clearPlayerState, setIsShuffling } = usePlayer()
   return (
     <div className={styles.episode}>
       <Head>
@@ -33,7 +33,11 @@ const Episode = ({ episode }: EpisodeProps) => {
         <button
           className={styles.lastChild}
           type="button"
-          onClick={() => play(episode)}
+          onClick={() => {
+            clearPlayerState()
+            setIsShuffling(false)
+            play(episode)
+          }}
         >
           <img src="/play.svg" alt="tocar episódio" />
         </button>

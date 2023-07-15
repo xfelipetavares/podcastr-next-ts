@@ -1,22 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
+import { EpisodeFormatter, HomeProps } from '@/@types/types'
+import { usePlayer } from '@/contexts/PlayerContext'
 import api from '@/services/api'
-import { GetStaticProps } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
+import { convertDurationToTimeString } from '@/utils/convertDurationToTimeString'
 import { format, parseISO } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { convertDurationToTimeString } from '@/utils/convertDurationToTimeString'
-import styles from './home.module.scss'
-import { HomeProps, EpisodeFormatter } from '@/@types/types'
-import { usePlayer } from '@/contexts/PlayerContext'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
-
+import Image from 'next/image'
+import Link from 'next/link'
+import styles from './home.module.scss'
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
   const { playList } = usePlayer()
-
-  
   const episodeList = [...latestEpisodes, ...allEpisodes]
+  
   return (
     <div className={styles.homepage}>
       <Head>
