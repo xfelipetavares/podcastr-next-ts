@@ -1,19 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
-import { useRouter } from 'next/router'
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { EpisodeFormatter, EpisodeProps } from '@/@types/types'
+import { usePlayer } from '@/contexts/PlayerContext'
 import api from '@/services/api'
+import { convertDurationToTimeString } from '@/utils/convertDurationToTimeString'
 import { format, parseISO } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { convertDurationToTimeString } from '@/utils/convertDurationToTimeString'
-import styles from './episode.module.scss'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { EpisodeProps } from '@/@types/types'
+import styles from './episode.module.scss'
 
 const Episode = ({ episode }: EpisodeProps) => {
+  const { play, clearPlayerState, setIsShuffling } = usePlayer()
   return (
     <div className={styles.episode}>
+      <Head>
+        <title>{episode.title} | Podcastr</title>
+      </Head>
       <div className={styles.thumbnailContainer}>
         <Link href={'/'}>
           <button className={styles.firstChild} type="button">
@@ -26,7 +30,15 @@ const Episode = ({ episode }: EpisodeProps) => {
           src={episode.thumbnail}
           alt="capa do episodio"
         />
-        <button className={styles.lastChild} type="button">
+        <button
+          className={styles.lastChild}
+          type="button"
+          onClick={() => {
+            clearPlayerState()
+            setIsShuffling(false)
+            play(episode)
+          }}
+        >
           <img src="/play.svg" alt="tocar episódio" />
         </button>
       </div>
@@ -40,15 +52,29 @@ const Episode = ({ episode }: EpisodeProps) => {
 
       <div
         className={styles.description}
-        dangerouslySetInnerHTML={{ __html: episode.description ? episode.description : "" }}
+        dangerouslySetInnerHTML={{
+          __html: episode.description ? episode.description : '',
+        }}
       />
     </div>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await api.get('episodes', {
+    params: {
+      _limit: 2,
+      _sort: 'published_at',
+      _order: 'desc',
+    },
+  })
+
+  const paths = data.map((episode: EpisodeFormatter) => ({
+    params: { slug: episode.id },
+  }))
+
   return {
-    paths: [],
+    paths,
     fallback: 'blocking',
   }
 }
