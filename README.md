@@ -6,7 +6,7 @@
 
 <h4 align="center">Versão 1.0</h4>
 <div align=center>
-    <a href='https://podcastr-next-ts.vercel.app/' target='_blank'>
+    <a href='[https://podcastr-next-ts.vercel.app/](https://podcastr-next-ts-xfelipetavares.vercel.app/)' target='_blank'>
         <p>Demo on Vercel</p>
     </a>
 </div>
