@@ -5,15 +5,14 @@
 <p align="center">Podcastr. O melhor para você ouvir, sempre. 🎧</p>
 
 <h4 align="center">Versão 1.0</h4>
+<div align=center>
+    <a href='https://podcastr-next-ts.vercel.app/' target='_blank'>
+        <p>Demo on Vercel</p>
+    </a>
+</div>
 
 <p align="center">
   <img src="https://github.com/xfelipetavares/podcastr-next-ts/assets/33338074/afb906fe-2980-4dc8-a598-9e87117b8cc4" alt="Podcastr" width="100%">
-</p>
-
-<p align="center">
-  <a href="https://podcastr-next-ts-xfelipetavares.vercel.app/" target="_blank">
-    <img alt="Demo on Vercel" src="https://github.com/xfelipetavares/podcastr-next-ts/assets/33338074/c65af035-d226-421b-8d6a-3b9684e09334">
-  </a>
 </p>
 
 ----
