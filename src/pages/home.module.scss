@@ -11,12 +11,14 @@
 
 .latestEpisodes {
   ul {
+    // border: 1px solid red;
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
 
     li {
+      min-width: 26.8rem;
       background: var(--white);
       border: 1px solid var(--gray-100);
       padding: 1.25rem;
@@ -24,11 +26,10 @@
       position: relative;
       display: flex;
       align-items: center;
-      width: 100%;
     }
 
     img {
-      width: 11rem;
+      width: 6rem;
       height: 6rem;
       border-radius: 1rem;
       object-fit: cover;
@@ -36,6 +37,7 @@
 
     .episodeDetails {
       flex: 1;
+      width: 1%;
       margin-left: 1rem;
 
       a {
@@ -47,6 +49,7 @@
         line-height: 1.4rem;
 
         &:hover {
+          width: 100%;
           text-decoration: underline;
         }
       }
@@ -62,12 +65,12 @@
 
       span {
         display: inline-block;
-        margin-top: .5rem;
-        font-size: .875rem;
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
 
         &:last-child {
-          margin-left: .5rem;
-          padding-left: .5rem;
+          margin-left: 0.5rem;
+          padding-left: 0.5rem;
           position: relative;
 
           &::before {
@@ -75,7 +78,7 @@
             width: 4px;
             height: 4px;
             border-radius: 2px;
-            background: #DDD;
+            background: #ddd;
             position: absolute;
             left: 0;
             top: 50%;
@@ -114,7 +117,8 @@
   table {
     width: 100%;
 
-    th, td {
+    th,
+    td {
       padding: 0.75rem 1rem;
       border-bottom: 1px solid var(--gray-100);
     }
@@ -122,17 +126,17 @@
     th {
       color: var(--gray-200);
       text-transform: uppercase;
-      font: 500 .75rem Lexend, sans-serif;
+      font: 500 0.75rem Lexend, sans-serif;
       text-align: left;
     }
 
     td {
-      font-size: .875rem;
+      font-size: 0.875rem;
 
       img {
         width: 6rem;
         height: 3.5rem;
-        border-radius: .5rem;
+        border-radius: 0.5rem;
         object-fit: cover;
       }
 
@@ -148,7 +152,7 @@
           text-decoration: underline;
         }
       }
-      
+
       button {
         width: 2rem;
         height: 2rem;
@@ -157,16 +161,25 @@
         border-radius: 0.5rem;
         font-size: 0;
         transition: filter 0.2s;
-  
+
         &:hover {
           filter: brightness(0.95);
         }
-  
+
         img {
           height: 1.25rem;
           width: 1.25rem;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 1220px) {
+  .latestEpisodes {
+    ul {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, 1fr);
     }
   }
 }
