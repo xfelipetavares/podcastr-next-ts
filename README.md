@@ -1,18 +1,18 @@
-<h1 align="center">
-  <img src=".github/banner.png" alt="Podcastr">
-</h1>
+<div align=center>
+    <img src="https://github.com/xfelipetavares/podcastr-next-ts/assets/33338074/4038360e-4198-4c06-b1ba-2104e10d9764" alt="banner">
+</div>
 
 <p align="center">Podcastr. O melhor para você ouvir, sempre. 🎧</p>
 
 <h4 align="center">Versão 1.0</h4>
 
 <p align="center">
-  <img src=".github/podcastr.png" alt="Podcastr" width="100%">
+  <img src="https://github.com/xfelipetavares/podcastr-next-ts/assets/33338074/afb906fe-2980-4dc8-a598-9e87117b8cc4" alt="Podcastr" width="100%">
 </p>
 
 <p align="center">
-  <a href="https://vercel.com/" target="_blank">
-    <img alt="Demo on Vercel" src=".github/demo_on_vercel.png">
+  <a href="https://podcastr-next-ts-xfelipetavares.vercel.app/" target="_blank">
+    <img alt="Demo on Vercel" src="https://github.com/xfelipetavares/podcastr-next-ts/assets/33338074/c65af035-d226-421b-8d6a-3b9684e09334">
   </a>
 </p>
 
